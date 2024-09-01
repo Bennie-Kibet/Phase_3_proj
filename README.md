@@ -7,6 +7,7 @@
 
 In Terry v. Ohio, a landmark Supreme Court case in 1967-8, the court found that a police officer was not in violation of the "unreasonable search and seizure" clause of the Fourth Amendment, even though he stopped and frisked a couple of suspects only because their behavior was suspicious. Thus was born the notion of "reasonable suspicion", according to which an agent of the police may e.g. temporarily detain a person, even in the absence of clearer evidence that would be required for full-blown arrests etc. Terry Stops are stops made of suspicious drivers.
 
+Therefore, to help the public department make reasonable judgements when prosecuting such cases they would like to have a model that identifies such cases to plan on how to deal with them.
 
 ## Problem Statement:
 
@@ -280,4 +281,65 @@ Insights
 ### Random Forest
 
 ![alt text](images/random_for_enhanced.png)
+
+After optimizing the parameters for the Random Forest classifier using grid search, our model showed improved performance as described below:
+* The accuracy of the Random Forest model now stands at 79%, indicating that it correctly predicted the class labels for the test data with around 79.9% accuracy and achieved 88.7% accuracy on the training data, making it highly effective for predicting arrests occuring after a Terry Stop.
+* The confusion matrix with tuned parameters shows 714 true positives (TP), 8951 true negatives (TN), 1834 false positives (FP), and 598 false negatives (FN), demonstrating excellent predictive capability.
+
+![alt text](images/con_random_for_last.png)
+
+* The tuned Decision Tree model achieved a training accuracy of 87.5% and an improved test accuracy of 88%. This suggests that the model is performing well and has learned patterns in the data that enable accurate predictions.
+* The Logistic Regression model attained an AUC-ROC score of around 0.6799 on the training data and 0.6789 on the test data.
+
+## Evaluation
+## Analysis accuracy level
+* We have developed three machine learning models to predict arrests occuring after Terry Stops in Seattle. Upon testing, we found that logistic regression performs poorly, achieving a training accuracy of 74.61% and a testing accuracy of 67.98%. Despite applying 3-fold cross-validation to mitigate overfitting, the training accuracy dropped to 67.99% and the testing accuracy to 67.89%.
+
+* In contrast, the decision tree classifier and random forest models demonstrated better accuracy. The decision tree achieved training and testing accuracies of 87.99% and 84.01%, respectively, while the random forest model had a training accuracy of 87.47% and a testing accuracy of 77.57%.
+
+* Therefore, it is evident that the decision tree model had the best average prediction accuracy, followed by the random forest. To further improve our prediction accuracy, we applied hyperparameter tuning using GridSearch.
+
+* After hyperparameter tuning, the decision tree model's accuracy improved to 88.7% on the training data and 79.9% on the testing data. The random forest model's accuracy improved to 88.7% on the training data and 79.9% on the testing data.
+
+* This indicates that there was some overfitting in the random forest model, making the decision tree preferable. In terms of precision, recall, and F1 score, the tuned decision tree outperformed the random forest classifier.
+
+## ROC curve to check the best model
+
+![alt text](images/ROC_curve.png)
+
+## Model Comparison Summary
+Based on the AUC (Area Under the Curve) values from the ROC (Receiver Operating Characteristic) curve, the following inferences can be made about the models' performance:
+
+* Decision Tree:
+
+AUC: 0.84
+
+Inference: Exhibits the strongest discriminatory power, effectively distinguishing between positive and negative classes. Maintains a high true positive rate (TPR) with a low false positive rate (FPR), resulting in a large ROC curve area.
+* Random Forest:
+
+AUC: 0.85
+
+Inference: Demonstrates good classification ability slightly better than the Decision Tree. May have marginally lower false positive and false negative rates.
+* Logistic Regression:
+
+AUC: 0.80
+
+Inference: Shows the weakest discriminatory performance among the three models, with potentially higher false positive and false negative rates.
+
+Conclusion:
+
+* The Random Forest is identified as the best model for Arrests predictions due to its largest area under the ROC curve and highest accuracy and the most improved hence best in predicting Arrest occuring after Terry Stops.
+* The Decision Tree also performs well but is slightly less effective than the Random Forest.
+* The Logistic Regression model, while useful, has the lowest AUC, indicating comparatively weaker performance in distinguishing between classes.
+
+## Conclusion
+> By leveraging the best model, which is the Random Forest, the public safety department can achieve significant benefits:
+
+* Accurate Prediction of arrests after a Terry stop: The model's high accuracy ensures effective identification of arrests likely to occur, enabling preparation on how to prosecute such cases.
+* Resource Allocation: Efficient Use of Resources: By predicting the likelihood of an arrest following a Terry stop, departments can allocate resources more effectively. This ensures that officers are deployed where they are most needed, potentially reducing response times and improving overall efficiency.
+* Crime Prevention through proactive Policing: Predictive models can help identify patterns and hotspots for criminal activity. This allows officers to be more proactive in their patrols, potentially preventing crimes before they occur.
+* Improved Training and Policies through data-driven decisions: Analysis of predictive data can inform training programs and policy adjustments. Departments can identify areas where officers may need additional training or where policies might need to be revised to improve outcomes.
+* Community Trust (Transparency and Accountability): Using data to predict arrests can increase transparency in policing practices. When the public sees that decisions are based on data and not bias, it can help build trust between the community and the police.
+* Legal and Ethical Compliance reducing bias: Predictive models can help ensure that Terry stops are conducted based on objective criteria rather than subjective judgment, potentially reducing instances of biased policing.
+* Enhanced Officer Safety: Predicting the likelihood of an arrest can also help assess the risk level of a situation, allowing officers to take necessary precautions to ensure their safety.
 
